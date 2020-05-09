@@ -1,5 +1,5 @@
 const clientId = 'f03925ce76e844a79a88dbbe1f677103';
-const redirectURI = 'http://jammingtocode.surge.sh';
+const redirectURI = 'http://localhost:3000/';
 let userToken;
 
 const Spotify = {
@@ -28,7 +28,7 @@ const Spotify = {
           }
       }).then(response => {
           return response.json();
-      }).then(jsonResponse => {
+        }).then(jsonResponse => {
          if(!jsonResponse.tracks){
              return [];
          }
@@ -36,12 +36,13 @@ const Spotify = {
              return {
                  id: track.id,
                  name: track.name,
-                 artist: track.artist[0].name,
+                 artist: track.artists[0].name,
                  album: track.album.name,
                  uri: track.uri 
              };
          });
-      });
+      })
+      .catch(e => console.log(e));
    },
    savePlaylist(name, trackUris){
         if(!name || !trackUris.length){
