@@ -1,20 +1,20 @@
 import React from 'react';
 import './SearchResults.css';
 
-import TrackList from '../TrackList/TrackList'
+import TrackList from '../TrackList/TrackList';
+import { ProjConsumer } from '../ContextProvider/ContextProvider';
 
-class SearchResults extends React.Component {
-    render(){
-        return (
-          <div className="SearchResults">
-            <h2>Results</h2>
-            <TrackList tracks={this.props.searchResults} 
-                       onAdd={this.props.onAdd}
-                       isRemoval={false} />
-          </div>
-        );
-    }
-}
-
+const SearchResults = (props) => {
+	return (
+		<ProjConsumer>
+			{({ searchResults}) => (
+				<div className="SearchResults">
+					<h2>Results</h2>
+					<TrackList tracks={searchResults}  isRemoval={false} />
+				</div>
+			)}
+		</ProjConsumer>
+	);
+};
 
 export default SearchResults;

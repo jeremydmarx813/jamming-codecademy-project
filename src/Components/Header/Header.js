@@ -1,14 +1,19 @@
 import React from 'react';
 import './Header.css';
+import { ProjConsumer } from '../ContextProvider/ContextProvider';
 
-class Header extends React.Component {
-    render() {
-        return (
-           <React.Fragment> 
-                {/* /* <h1 onClick={this.props.headerClick.bind(this)}>Ja<span className="highlight">mmm</span>ing</h1> */ */}
-           </React.Fragment>
-        )
-    }
-}
+const Header = () => {
+	// const headerClick = React.useContext(ProjectContext);
 
-export default Header
+	return (
+		<ProjConsumer>
+			{({ headerClick }) => (
+				<h1 onClick={headerClick}>
+					Ja<span className="highlight">mmm</span>ing
+				</h1>
+			)}
+		</ProjConsumer>
+	);
+};
+
+export default Header;
