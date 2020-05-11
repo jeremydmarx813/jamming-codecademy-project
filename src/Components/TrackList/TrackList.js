@@ -7,16 +7,14 @@ import { ProjConsumer } from '../ContextProvider/ContextProvider';
 const TrackList = (props) => {
 	return (
 		<ProjConsumer>
-			{({playlistTracks}) => (
+			{({}) => (
 				<div className="TrackList">
-					{playlistTracks.map((track) => {
+					{this.props.tracks.map((track) => {
 						return (
 							<Track
 								track={track}
 								key={track.id}
-								onAdd={props.onAdd}
-								onRemove={props.onRemove}
-								isRemoval={props.isRemoval}
+                                buttonFunc={this.props.buttonFunc}
 							/>
 						);
 					})}

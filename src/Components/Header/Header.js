@@ -3,7 +3,6 @@ import './Header.css';
 import { ProjConsumer } from '../ContextProvider/ContextProvider';
 
 const Header = () => {
-	// const headerClick = React.useContext(ProjectContext);
 
 	return (
 		<ProjConsumer>

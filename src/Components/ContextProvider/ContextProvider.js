@@ -85,12 +85,12 @@ export class ContextProvider extends React.Component {
 
 	headerClick = () => {
         console.log('TEST');
-		this.setState({
-			searchResults  : [],
-			playlistName   : 'New Playlist',
-            playlistTracks : [],
-            term: ''
-		});
+		// this.setState({
+		// 	searchResults  : [],
+		// 	playlistName   : 'New Playlist',
+        //     playlistTracks : [],
+        //     term: ''
+		// });
 	}
 
     render() {

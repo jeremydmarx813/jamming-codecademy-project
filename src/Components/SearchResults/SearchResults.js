@@ -7,10 +7,10 @@ import { ProjConsumer } from '../ContextProvider/ContextProvider';
 const SearchResults = (props) => {
 	return (
 		<ProjConsumer>
-			{({ searchResults}) => (
+			{({ searchResults, addTrack }) => (
 				<div className="SearchResults">
 					<h2>Results</h2>
-					<TrackList tracks={searchResults}  isRemoval={false} />
+					<TrackList tracks={searchResults}  isRemoval={false} buttonFunc={addTrack} />
 				</div>
 			)}
 		</ProjConsumer>

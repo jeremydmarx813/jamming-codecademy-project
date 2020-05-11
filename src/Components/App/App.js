@@ -25,13 +25,7 @@ class App extends React.Component {
 
 						<div className="App-playlist">
 							<SearchResults />
-							<Playlist
-								// playlistName={this.state.playlistName}
-								// playlistTracks={this.state.playlistTracks}
-								// onRemove={this.removeTrack}
-								// onNameChange={this.updatePlaylistName}
-								// onSave={this.savePlaylist}
-							/>
+							<Playlist />
 						</div>
 					</div>
 				</div>
