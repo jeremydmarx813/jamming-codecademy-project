@@ -3,7 +3,7 @@ import './App.css';
 
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
-import Playlist from '../Playlist/Playlist';
+// import Playlist from '../Playlist/Playlist';
 import Header from '../Header/Header';
 import Spotify from '../../util/Spotify';
 
@@ -21,11 +21,11 @@ class App extends React.Component {
 					<Header />
 
 					<div className="App">
-						<SearchBar />
+						{/* <SearchBar /> */}
 
 						<div className="App-playlist">
-							<SearchResults />
-							<Playlist />
+							{/* <SearchResults /> */}
+							{/* <Playlist /> */}
 						</div>
 					</div>
 				</div>
