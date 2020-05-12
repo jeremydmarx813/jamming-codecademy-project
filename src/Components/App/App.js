@@ -5,33 +5,27 @@ import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 // import Playlist from '../Playlist/Playlist';
 import Header from '../Header/Header';
-import Spotify from '../../util/Spotify';
+// import Spotify from '../../util/Spotify';
 
 import { ContextProvider } from '../ContextProvider/ContextProvider';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+const App = () => {
+	return (
+		<ContextProvider>
+			<div>
+				<Header />
 
-	render() {
-		return (
-			<ContextProvider>
-				<div>
-					<Header />
+				<div className="App">
+					<SearchBar />
 
-					<div className="App">
-						{/* <SearchBar /> */}
-
-						<div className="App-playlist">
-							{/* <SearchResults /> */}
-							{/* <Playlist /> */}
-						</div>
+					<div className="App-playlist">
+						<SearchResults />
+						{/* <Playlist /> */}
 					</div>
 				</div>
-			</ContextProvider>
-		);
-	}
-}
+			</div>
+		</ContextProvider>
+	);
+};
 
 export default App;

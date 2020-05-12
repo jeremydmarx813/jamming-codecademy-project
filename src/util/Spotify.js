@@ -29,6 +29,7 @@ const Spotify = {
       }).then(response => {
           return response.json();
         }).then(jsonResponse => {
+            console.log(jsonResponse);
          if(!jsonResponse.tracks){
              return [];
          }
