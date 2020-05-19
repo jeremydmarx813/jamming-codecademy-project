@@ -8,7 +8,7 @@ const SearchBar = () => {
 			{({ search, handleTermChange, term }) => (
 				<div className="SearchBar">
 					<input
-						defaultValue={term}
+						value={term}
 						placeholder="Enter A Song, Album, or Artist"
 						onChange={handleTermChange}
 					/>
