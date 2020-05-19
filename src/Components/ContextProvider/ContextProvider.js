@@ -2,44 +2,29 @@ import React from 'react';
 import Spotify from '../../util/Spotify';
 import SearchResults from '../SearchResults/SearchResults';
 
-const ProjectContext = React.createContext({
-	headerClick         : () => {},
-	term                : '',
-	search              : () => {},
-	handleTermChange    : () => {},
-	searchBarDefaultVal : '',
-    searchResultsArrayInState: []
-    // ,
-	// playlistName: 'New Playlist',
-	// playlistTracks: [],
-	// addTrack: () => {},
-	// removeTrack: () => {},
-	// updatePlaylistName: () => {},
-	// savePlaylist: () => {},
-	// handleNameChange: () => {}
-});
+const ProjectContext = React.createContext();
 
 export class ContextProvider extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			searchResultsArrayInState: [],
+			searchResultsArrayInState : [],
 			// playlistName: 'New Playlist',
 			// playlistTracks: [],
-			term                : '',
-			headerClick         : this.headerClick,
-			search              : this.search,
-			handleTermChange    : this.handleTermChange,
-			searchBarDefaultVal : 'Enter A Song, Album, or Artist',
-            addTrack: this.addTrack
-            // ,
+			term                      : '',
+			headerClick               : this.headerClick,
+			search                    : this.search,
+			handleTermChange          : this.handleTermChange,
+
+			addTrack                  : this.addTrack
+			// ,
 			// removeTrack: this.removeTrack,
 			// updatePlaylistName: this.updatePlaylistName,
 			// savePlaylist: this.savePlaylist
 		};
-    }
-    
-    headerClick = () => {
+	}
+
+	headerClick = () => {
 		if (!this.state.term.length) {
 			console.log('TEST');
 		} else {
@@ -50,23 +35,22 @@ export class ContextProvider extends React.Component {
 				term : ''
 			});
 		}
-    }
-    
-    handleTermChange = (event) => {
+	};
+
+	handleTermChange = (event) => {
 		this.setState({
 			term : event.target.value
 		});
-	}
+	};
 
-    
-    search = (term) => {
-		Spotify.search(term).then(searchResults => {
-            console.log(SearchResults)
+	search = (term) => {
+		Spotify.search(term).then((searchResults) => {
+			console.log(SearchResults);
 			this.setState({
 				searchResultsArrayInState : searchResults
 			});
 		});
-	}
+	};
 
 	addTrack = (track) => {
 		let tunes = this.state.playlistTracks;
@@ -77,9 +61,7 @@ export class ContextProvider extends React.Component {
 		this.setState({
 			playlistTracks : tunes
 		});
-    }
-    
-    
+	};
 
 	// removeTrack = (track) => {
 	// 	let tunes = this.state.playlistTracks;
@@ -104,12 +86,6 @@ export class ContextProvider extends React.Component {
 	// 		});
 	// 	});
 	// }
-
-	
-
-	
-
-
 
 	render() {
 		return <ProjectContext.Provider value={this.state}>{this.props.children}</ProjectContext.Provider>;

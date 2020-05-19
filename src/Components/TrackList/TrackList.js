@@ -7,7 +7,7 @@ import { ProjConsumer } from '../ContextProvider/ContextProvider';
 const TrackList = (props) => {
 	return (
 		<ProjConsumer>
-			{({}) => (
+			{() => (
 				<div className="TrackList">
 					{this.props.tracks.map((track) => {
 						return (
