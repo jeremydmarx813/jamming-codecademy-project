@@ -3,7 +3,7 @@ import './App.css';
 
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
-// import Playlist from '../Playlist/Playlist';
+import Playlist from '../Playlist/Playlist';
 import Header from '../Header/Header';
 // import Spotify from '../../util/Spotify';
 
@@ -20,7 +20,7 @@ const App = () => {
 
 					<div className="App-playlist">
 						<SearchResults />
-						{/* <Playlist /> */}
+						<Playlist />
 					</div>
 				</div>
 			</div>

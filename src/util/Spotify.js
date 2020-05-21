@@ -9,8 +9,8 @@ const Spotify = {
       }
       const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
       const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
-      console.log(accessTokenMatch);
-      console.log(expiresInMatch);
+    //   console.log(accessTokenMatch);
+    //   console.log(expiresInMatch);
       if(accessTokenMatch && expiresInMatch){
           userToken = accessTokenMatch[1];
           const expirationTime = Number(expiresInMatch[1]);
@@ -31,7 +31,7 @@ const Spotify = {
       }).then(response => {
           return response.json();
         }).then(jsonResponse => {
-            console.log(jsonResponse);
+            // console.log(jsonResponse);
          if(!jsonResponse.tracks){
              return [];
          }

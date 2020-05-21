@@ -11,6 +11,7 @@ const SearchBar = () => {
 						value={term}
 						placeholder="Enter A Song, Album, or Artist"
 						onChange={handleTermChange}
+						name="term"
 					/>
 					<button className="SearchButton" onClick={search.bind(this, term)}>
 						SEARCH
