@@ -9,7 +9,8 @@ const Spotify = {
       }
       const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
       const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
-
+      console.log(accessTokenMatch);
+      console.log(expiresInMatch);
       if(accessTokenMatch && expiresInMatch){
           userToken = accessTokenMatch[1];
           const expirationTime = Number(expiresInMatch[1]);
@@ -22,6 +23,7 @@ const Spotify = {
   },
    search(term){
        const accessToken = Spotify.getAccessToken();
+    //    console.log(term);
       return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
           headers: {
              Authorization: `Bearer ${accessToken}`

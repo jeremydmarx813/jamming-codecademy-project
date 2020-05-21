@@ -9,12 +9,12 @@ const TrackList = (props) => {
 		<ProjConsumer>
 			{() => (
 				<div className="TrackList">
-					{this.props.tracks.map((track) => {
+					{props.tracks.map((track) => {
 						return (
 							<Track
 								track={track}
 								key={track.id}
-                                buttonFunc={this.props.buttonFunc}
+                                buttonFunc={props.buttonFunc}
 							/>
 						);
 					})}

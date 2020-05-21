@@ -29,7 +29,7 @@ export class ContextProvider extends React.Component {
 			console.log('TEST');
 		} else {
 			this.setState({
-				// searchResultsArrayInState  : [],
+				searchResultsArrayInState  : [],
 				// playlistName   : 'New Playlist',
 				// playlistTracks : [],
 				term : ''
