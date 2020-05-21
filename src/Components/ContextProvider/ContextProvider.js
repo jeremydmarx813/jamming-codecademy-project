@@ -69,12 +69,18 @@ export class ContextProvider extends React.Component {
 
 	savePlaylist = () => {
 		const trackURIs = this.state.playlistTracks.map((track) => track.uri);
-		Spotify.savePlaylist(this.state.playlistName, trackURIs).then(() => {
-			this.setState({
-				playlistName   : 'New Playlist',
-				playlistTracks : []
-			});
-		});
+		if(this.state.playlistTracks.length && this.state.playlistName.length){
+
+			Spotify.savePlaylist(this.state.playlistName, trackURIs).then((response) => {
+				console.log(response);
+				this.setState({
+					playlistName   : 'New Playlist',
+					playlistTracks : []
+				});
+			}, console.log);
+		} else {
+			console.log('playlist input needed');
+		}
 	};
 
 	render() {
