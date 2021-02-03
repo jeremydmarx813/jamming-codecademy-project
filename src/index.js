@@ -1,22 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Auth0ProviderWithHistory from './util/auth0-provider-with-history';
 import './index.css';
 import App from './Components/App/App';
-import { Auth0Provider } from '@auth0/auth0-react';
-// import * as serviceWorker from './serviceWorker';
-const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+// import { Auth0Provider } from '@auth0/auth0-react';
+import PrivateRoute from './util/PrivateRoute';
+import LoginPage from './Components/Login/LoginPage';
+import Header from './Components/Header/Header';
+
 
 ReactDOM.render(
-<Auth0Provider
-domain={domain}
-clientId={clientId}
-redirectUri={window.location.origin}>
-    <App />
-</Auth0Provider>
-, document.getElementById('root'));
+  <Router>
+    <Auth0ProviderWithHistory>
+     <Header />
+     <div className="App">	
+      <Switch>
+          <Route path="/login" component={LoginPage} />
+          <PrivateRoute path="/" exact component={App}/>
+      </Switch>  
+      </div>
+    </Auth0ProviderWithHistory>
+  </Router>
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.unregister();
+, document.getElementById('root'));

@@ -3,9 +3,14 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 
 function LoginPage() {
-    const { loginWithRedirect }= useAuth0();
+    const { loginWithRedirect } = useAuth0();
+    const styleObj = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center' 
+    }
     return (
-        <div>
+        <div style={styleObj}>
             <button 
             className="Playlist-save"
             onClick={() => loginWithRedirect()}>Login
