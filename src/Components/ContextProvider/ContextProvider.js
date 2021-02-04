@@ -40,8 +40,10 @@ export class ContextProvider extends React.Component {
 	};
 
 	search = (term) => {
+		console.log(term);
+		// console.log(Spotify.search(term))
 		Spotify.search(term).then((searchResults) => {
-			// console.log(SearchResults);
+			console.log(searchResults);
 			this.setState({
 				searchResultsArrayInState : searchResults
 			});

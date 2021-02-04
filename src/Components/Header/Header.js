@@ -1,19 +1,16 @@
 import React from 'react';
 import './Header.css';
-// import { ProjConsumer } from '../ContextProvider/ContextProvider';
+import { ProjConsumer } from '../ContextProvider/ContextProvider';
 
 const Header = () => {
 
 	return (
 
-	<h1 >
-		Ja<span className="highlight">mmm</span>ing
-	   </h1>
-		// <ProjConsumer>
-		// 	{({ headerClick }) => (
-			
-		// 	)}
-		// </ProjConsumer>
+		<ProjConsumer>
+			{( headerClick ) => (
+			    <h1 onClick={headerClick}>Ja<span className="highlight">mmm</span>ing</h1>
+			)}
+		</ProjConsumer>
 	);
 };
 

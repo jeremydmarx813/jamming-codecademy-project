@@ -21,10 +21,10 @@ const Spotify = {
 			window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
 		}
 	},
-	search(term) {
-		const accessToken = Spotify.getAccessToken();
-		   console.log(term);
-		return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
+	search: async (term) => {
+		const accessToken = await Spotify.getAccessToken();
+		 console.log(accessToken);
+		 return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
 			headers : {
 				Authorization : `Bearer ${accessToken}`
 			}

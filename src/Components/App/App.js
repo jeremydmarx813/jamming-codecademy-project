@@ -12,7 +12,7 @@ import LogoutButton from '../Login/LogoutButton';
 import { ContextProvider } from '../ContextProvider/ContextProvider';
 
 const App = () => {
-	const {isAuthenticated, user} = useAuth0();
+	const { isAuthenticated } = useAuth0();
 	return isAuthenticated && (
 		<ContextProvider>
 					<SearchBar />
