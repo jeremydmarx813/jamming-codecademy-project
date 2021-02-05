@@ -1,8 +1,12 @@
+import axios from 'axios';
 const clientId = 'f03925ce76e844a79a88dbbe1f677103';
 const redirectURI = 'http://localhost:3000';
 let userToken;
 
 const Spotify = {
+	test(){
+      return axios.get(`https://cors-anywhere.herokuapp.com/https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectURI}&scope=playlist-modify-public`)
+	},
 	getAccessToken() {
 		if (userToken) {
 			return userToken;
@@ -18,7 +22,7 @@ const Spotify = {
 			window.setTimeout(() => (userToken = ''), expirationTime * 1000);
 			window.history.pushState('Access Token', null, '/');
 		} else {
-			window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
+			window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectURI}&scope=playlist-modify-public`;
 		}
 	},
 	search: async (term) => {

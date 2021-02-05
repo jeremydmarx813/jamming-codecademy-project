@@ -8,7 +8,7 @@ const PrivateRoute = ({ component, ...args }) => {
         component={withAuthenticationRequired(component, {
             onRedirecting: () => <div>Loading...</div>
         })}>
-            {/* {...args} */}
+            {args.length ? args : null}
         </Route>
     )
 }
