@@ -2,10 +2,12 @@ import axios from 'axios';
 const clientId = 'f03925ce76e844a79a88dbbe1f677103';
 const redirectURI = 'http://localhost:3000';
 let userToken;
+const corsStr = 'https://cors-anywhere.herokuapp.com/';
 
 const Spotify = {
 	test(){
-      return axios.get(`https://cors-anywhere.herokuapp.com/https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectURI}&scope=playlist-modify-public`)
+		
+      return axios.get(`https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectURI}&scope=playlist-modify-public`)
 	},
 	getAccessToken() {
 		if (userToken) {
@@ -31,13 +33,16 @@ const Spotify = {
 		 return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
 			headers : {
 				Authorization : `Bearer ${accessToken}`
+				// ,
+				// "X-Requested-With": "XMLHttpRequest"
+				
 			}
 		})
 			.then((response) => {
 				return response.json();
 			})
 			.then((jsonResponse) => {
-				// console.log(jsonResponse);
+				console.log(jsonResponse);
 				if (!jsonResponse.tracks) {
 					return [];
 				}

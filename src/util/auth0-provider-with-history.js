@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
+import Spotify from './Spotify';
 
 const Auth0ProviderWithHistory = ({children}) => {
     const domain = process.env.REACT_APP_AUTH0_DOMAIN;
@@ -8,6 +9,8 @@ const Auth0ProviderWithHistory = ({children}) => {
     const history = useHistory();
 
     const redirectFunc = (appState) => {
+        // const test = Spotify.test().then(res => console.log(res))
+        // console.log(window.location.pathname + `${test}`);
       history.push(appState?.returnTo || window.location.pathname);
     }
 
