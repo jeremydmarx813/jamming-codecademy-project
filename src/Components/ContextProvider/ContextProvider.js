@@ -42,13 +42,13 @@ export class ContextProvider extends React.Component {
 	search = (term) => {
 		console.log(term);
 		// console.log(Spotify.search(term))
-		// Spotify.test().then(res => console.log(res));
-		Spotify.search(term).then((searchResults) => {
-			// console.log(searchResults);
-			this.setState({
-				searchResultsArrayInState : searchResults
-			});
-		});
+		Spotify.test().then(res => console.log(res));
+		// Spotify.search(term).then((searchResults) => {
+		// 	// console.log(searchResults);
+		// 	this.setState({
+		// 		searchResultsArrayInState : searchResults
+		// 	});
+		// });
 	};
 
 	addTrack = (track) => {

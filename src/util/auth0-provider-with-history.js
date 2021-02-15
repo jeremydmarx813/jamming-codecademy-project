@@ -9,9 +9,10 @@ const Auth0ProviderWithHistory = ({children}) => {
     const history = useHistory();
 
     const redirectFunc = (appState) => {
-        // const test = Spotify.test().then(res => console.log(res))
-        // console.log(window.location.pathname + `${test}`);
-      history.push(appState?.returnTo || window.location.pathname);
+        const test = Spotify.test().then(res => console.log(res))
+        console.log(appState)
+        
+    //   history.push(appState?.returnTo || window.location.pathname);
     }
 
     return (
