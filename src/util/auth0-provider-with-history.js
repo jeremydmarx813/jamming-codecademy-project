@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
+import queryString from 'query-string'
 import Spotify from './Spotify';
 
 const Auth0ProviderWithHistory = ({children}) => {
@@ -8,9 +9,12 @@ const Auth0ProviderWithHistory = ({children}) => {
     const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
     const history = useHistory();
 
-    const redirectFunc = (appState) => {
-        const test = Spotify.test().then(res => console.log(res))
-        console.log(appState)
+    const redirectFunc = async (appState) => {
+        const { code } = queryString.parse(window.location.search)
+
+        console.log({ code })
+        const authToken = await Spotify.getAuthToken(code)
+        console.log({ authToken })
         
     //   history.push(appState?.returnTo || window.location.pathname);
     }

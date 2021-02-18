@@ -1,10 +1,31 @@
 import axios from 'axios';
+import queryString from 'query-string'
 const clientId = 'f03925ce76e844a79a88dbbe1f677103';
 const redirectURI = 'http://localhost:3000';
 let userToken;
 const corsStr = 'https://cors-anywhere.herokuapp.com/';
+const SPOTIFY_SECRET = '*ZjAzOTI1Y2U3NmU4NDRhNzlhODhkYmJlMWY2NzcxMDM6N2FkNjM0NWQ4MDhmNDJjZDllYTJmMTE0NDJiMTQ4NTY=*'
+
 
 const Spotify = {
+	async getAuthToken(code) {
+		const data = queryString.stringify({
+			redirect_uri: window.location.href,
+			grant_type: 'authorization_code',
+			code,
+		 })
+		const res = await axios.post('https://accounts.spotify.com/api/token', {
+			data,
+			 headers: {
+				'content-type': 'application/x-www-form-urlencoded',
+				 Authorization: `Basic ${SPOTIFY_SECRET}`
+			 }
+		 })
+
+		 console.log('RESPONSE:', res.data)
+		 return res.data;
+	},
+
 	test(){
 		
       return axios.get(`https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectURI}&scope=playlist-modify-public`)
