@@ -9,12 +9,13 @@ const Auth0ProviderWithHistory = ({children}) => {
     const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
     const history = useHistory();
 
-    const redirectFunc = async (appState) => {
-        const { code } = queryString.parse(window.location.search)
+    const redirectFunc = (appState) => {
+        // const { code } = queryString.parse(window.location.search)
 
-        console.log({ code })
-        const authToken = await Spotify.getAuthToken(code)
-        console.log({ authToken })
+        // console.log({ code })
+        // const authToken = await Spotify.getAuthToken(code)
+        // console.log({ authToken })
+        Spotify.test().then(res => console.log(res.request.responseURL))
         
     //   history.push(appState?.returnTo || window.location.pathname);
     }
