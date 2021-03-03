@@ -14,15 +14,17 @@ import { ContextProvider } from '../ContextProvider/ContextProvider';
 const App = () => {
 	const { isAuthenticated } = useAuth0();
 	return isAuthenticated && (
-		<ContextProvider>
+			<>
 					<SearchBar />
 					<div className="App-playlist">
-						<SearchResults />
-						<Playlist />
+						{/* <SearchResults /> */}
+						{/* <Playlist /> */}
 						<LogoutButton />
 					</div> 	
-		</ContextProvider>
+			</>
 	);
 };
+
+{/* <ContextProvider></ContextProvider> */}
 
 export default App;

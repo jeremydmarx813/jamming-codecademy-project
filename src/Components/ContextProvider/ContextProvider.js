@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import Spotify from '../../util/Spotify';
 
-const ProjectContext = React.createContext();
+const ProjectContext = createContext();
 
 export class ContextProvider extends React.Component {
 	constructor() {
@@ -20,18 +20,18 @@ export class ContextProvider extends React.Component {
 		};
 	}
 
-	headerClick = () => {
-		if (!this.state.term.length) {
-			console.log('TEST');
-		} else {
-			this.setState({
-				searchResultsArrayInState : [],
-				playlistName              : '',
-				playlistTracks            : [],
-				term                      : ''
-			});
-		}
-	};
+	// headerClick = () => {
+	// 	if (!this.state.term.length) {
+	// 		console.log('TEST');
+	// 	} else {
+	// 		this.setState({
+	// 			searchResultsArrayInState : [],
+	// 			playlistName              : '',
+	// 			playlistTracks            : [],
+	// 			term                      : ''
+	// 		});
+	// 	}
+	// };
 
 	handleTermChange = (event) => {
 		this.setState({
@@ -51,41 +51,41 @@ export class ContextProvider extends React.Component {
 		// });
 	};
 
-	addTrack = (track) => {
-		let tunes = this.state.playlistTracks;
-		if (tunes.find((tune) => tune.id === track.id)) {
-			return;
-		}
-		tunes.push(track);
-		this.setState({
-			playlistTracks : tunes
-		});
-	};
+	// addTrack = (track) => {
+	// 	let tunes = this.state.playlistTracks;
+	// 	if (tunes.find((tune) => tune.id === track.id)) {
+	// 		return;
+	// 	}
+	// 	tunes.push(track);
+	// 	this.setState({
+	// 		playlistTracks : tunes
+	// 	});
+	// };
 
-	removeTrack = (track) => {
-		let tunes = this.state.playlistTracks;
-		tunes = tunes.filter((tune) => tune.id !== track.id);
-		this.setState({
-			playlistTracks : tunes
-		});
-	};
+	// removeTrack = (track) => {
+	// 	let tunes = this.state.playlistTracks;
+	// 	tunes = tunes.filter((tune) => tune.id !== track.id);
+	// 	this.setState({
+	// 		playlistTracks : tunes
+	// 	});
+	// };
 
-	savePlaylist = () => {
-		const trackURIs = this.state.playlistTracks.map((track) => track.uri);
-		if (this.state.playlistTracks.length && this.state.playlistName.length) {
-			Spotify.savePlaylist(this.state.playlistName, trackURIs).then((response) => {
-				console.log(response);
-				this.setState({
-					playlistName              : '',
-					playlistTracks            : [],
-					searchResultsArrayInState : [],
-					term                      : ''
-				});
-			}, console.log);
-		} else {
-			console.log('playlist input needed');
-		}
-	};
+	// savePlaylist = () => {
+	// 	const trackURIs = this.state.playlistTracks.map((track) => track.uri);
+	// 	if (this.state.playlistTracks.length && this.state.playlistName.length) {
+	// 		Spotify.savePlaylist(this.state.playlistName, trackURIs).then((response) => {
+	// 			console.log(response);
+	// 			this.setState({
+	// 				playlistName              : '',
+	// 				playlistTracks            : [],
+	// 				searchResultsArrayInState : [],
+	// 				term                      : ''
+	// 			});
+	// 		}, console.log);
+	// 	} else {
+	// 		console.log('playlist input needed');
+	// 	}
+	// };
 
 	render() {
 		return <ProjectContext.Provider value={this.state}>{this.props.children}</ProjectContext.Provider>;

@@ -1,25 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SearchBar.css';
-import { ProjConsumer } from '../ContextProvider/ContextProvider';
+// import { ProjConsumer } from '../ContextProvider/ContextProvider';
 
 const SearchBar = () => {
+	// { search, handleTermChange, term }
+	const [term, setTerm] = useState('')
 	return (
-		<ProjConsumer>
-			{({ search, handleTermChange, term }) => (
+		
+			
 				<div className="SearchBar">
 					<input
 						value={term}
 						placeholder="Enter A Song, Album, or Artist"
-						onChange={handleTermChange}
+						onChange={(e) => setTerm(e.target.value)}
 						name="term"
 					/>
-					<button className="SearchButton" onClick={search.bind(this, term)}>
+					<button className="SearchButton" onClick={() => {console.log('search test')}}>
 						SEARCH
 					</button>
 				</div>
-			)}
-		</ProjConsumer>
+			
+		
 	);
 };
+{/* <ProjConsumer></ProjConsumer> */}
 
 export default SearchBar;
