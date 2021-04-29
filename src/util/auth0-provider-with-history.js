@@ -15,7 +15,8 @@ const Auth0ProviderWithHistory = ({children}) => {
         // console.log({ code })
         // const authToken = await Spotify.getAuthToken(code)
         // console.log({ authToken })
-        Spotify.test().then(res => console.log(res.request.responseURL))
+        // Spotify.test().then(res => console.log(res.request.responseURL))
+        console.log('test')
         
     //   history.push(appState?.returnTo || window.location.pathname);
     }

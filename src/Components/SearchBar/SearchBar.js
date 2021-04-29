@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import './SearchBar.css';
-// import { ProjConsumer } from '../ContextProvider/ContextProvider';
+import { ProjectContext } from '../ContextProvider/ContextProvider';
 
 const SearchBar = () => {
-	// { search, handleTermChange, term }
-	const [term, setTerm] = useState('')
+	const [state, dispatch] = useContext(ProjectContext);
 	return (
 		
 			
 				<div className="SearchBar">
 					<input
-						value={term}
+						value={state.term}
 						placeholder="Enter A Song, Album, or Artist"
-						onChange={(e) => setTerm(e.target.value)}
+						onChange={(e) => {
+							dispatch({
+							 	type: "UPDATE_TERM",
+							 	payload: e.target.value
+							 })
+						}}
 						name="term"
 					/>
 					<button className="SearchButton" onClick={() => {console.log('search test')}}>
@@ -23,6 +27,5 @@ const SearchBar = () => {
 		
 	);
 };
-{/* <ProjConsumer></ProjConsumer> */}
 
 export default SearchBar;
