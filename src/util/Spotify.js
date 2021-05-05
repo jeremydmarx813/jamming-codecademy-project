@@ -28,7 +28,7 @@ const Spotify = {
 
 	test(){
 		
-      return axios.get(`https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectURI}&scope=playlist-modify-public`)
+      return axios.get(`${corsStr}https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectURI}&scope=playlist-modify-public`)
 	},
 	getAccessToken() {
 		if (userToken) {
