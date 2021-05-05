@@ -9,6 +9,7 @@ const Auth0ProviderWithHistory = ({children}) => {
     const domain = process.env.REACT_APP_AUTH0_DOMAIN;
     const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
     const history = useHistory();
+    const spotifyAuthLink = 'https://accounts.spotify.com/authorize?client_id=f03925ce76e844a79a88dbbe1f677103&response_type=code&redirect_uri=http://localhost:3000&scope=playlist-modify-public&show_dialog=true';
 
     const redirectFunc = async (appState) => {
         // const { code } = queryString.parse(window.location.search)
@@ -19,7 +20,7 @@ const Auth0ProviderWithHistory = ({children}) => {
         // }).then(res => {
         //     console.log('appState log from redirect auth0 func', appState);
         // });
-        history.push(appState || window.location.pathname);
+        // history.push(appState || window.location.pathname);
 
         // console.log({ code })
         // const authToken = await Spotify.getAuthToken(code)

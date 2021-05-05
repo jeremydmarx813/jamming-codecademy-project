@@ -17,9 +17,11 @@ import { Redirect } from 'react-router-dom';
 const App = () => {
 	const { isAuthenticated } = useAuth0();
 	useEffect(() => {
-		Spotify.test().then(res => console.log(res));
-		// axios.get('http://localhost:5000').then(res => console.log(res.data));
-	},[])
+		const code = new URLSearchParams(window.location.search).get("code");
+		console.log(code);
+		// Spotify.test().then(res => console.log(res));
+		axios.post('http://localhost:5000', { code }).then(res => console.log(res));
+	}, []);
 	return isAuthenticated ? (
 			<ContextProvider>
 					<SearchBar />
