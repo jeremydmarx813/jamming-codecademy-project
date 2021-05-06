@@ -11,9 +11,9 @@ const Auth0ProviderWithHistory = ({children}) => {
     const history = useHistory();
     const spotifyAuthLink = 'https://accounts.spotify.com/authorize?client_id=f03925ce76e844a79a88dbbe1f677103&response_type=code&redirect_uri=http://localhost:3000&scope=playlist-modify-public&show_dialog=true';
 
-    const redirectFunc = async (appState) => {
+    const redirectFunc = (appState) => {
         // const { code } = queryString.parse(window.location.search)
-        //     await axios.get('http://localhost:5000').then(res => {
+        //     await axios.post('http://localhost:5000').then(res => {
         //     console.log(res.data)
         //     appState.test = res?.data?.test;
         //     return res;
@@ -33,7 +33,7 @@ const Auth0ProviderWithHistory = ({children}) => {
         <Auth0Provider
         domain={domain}
         clientId={clientId}
-        redirectUri={window.location.origin}
+        redirectUri={spotifyAuthLink}
         onRedirectCallback={redirectFunc}>
             {children}
         </Auth0Provider>
