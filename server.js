@@ -1,16 +1,16 @@
 const express = require('express')
-const app = express();
 const cors = require('cors');
-// const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser'); 
 const port = process.env.PORT || 5000;
 // const axios = require('axios');
 const clientId = process.env.SPOTIFY_CLIENT_ID;
 const SpotifyWebApi = require("spotify-web-api-node");
 
 
+const app = express();
 app.use(cors());
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.json());
+// app.use(express.urlencoded())
 
 
 app.post("/refresh", (req, res) => {
@@ -48,6 +48,7 @@ app.post('/login', (req, res) => {
   spotifyApi
     .authorizationCodeGrant(code)
     .then(data => {
+      console.log('test')
       res.json({
         accessToken: data.body.access_token,
         refreshToken: data.body.refresh_token,
@@ -55,6 +56,7 @@ app.post('/login', (req, res) => {
       })
     })
     .catch(err => {
+      console.log(err);
       res.sendStatus(400)
     })
 })

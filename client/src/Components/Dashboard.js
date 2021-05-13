@@ -11,7 +11,7 @@ const Dashboard = ({code}) => {
 					<div className="App-playlist">
 						{/* <SearchResults /> */}
 						{/* <Playlist /> */}
-						
+						<h3>{code}</h3>
 					</div> 	
 		</ContextProvider>
     )
