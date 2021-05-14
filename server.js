@@ -1,14 +1,16 @@
 const express = require('express')
 const cors = require('cors');
+const dotenv = require('dotenv')
 // const bodyParser = require('body-parser'); 
-const port = process.env.PORT || 5000;
 // const axios = require('axios');
-const clientId = process.env.SPOTIFY_CLIENT_ID;
+// const clientId = process.env.SPOTIFY_CLIENT_ID;
 const SpotifyWebApi = require("spotify-web-api-node");
 
 
 const app = express();
 app.use(cors());
+dotenv.config();
+const port = process.env.PORT || 5000;
 app.use(express.json());
 // app.use(express.urlencoded())
 
@@ -44,7 +46,7 @@ app.post('/login', (req, res) => {
     clientId: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
   })
-
+  console.log(spotifyApi);
   spotifyApi
     .authorizationCodeGrant(code)
     .then(data => {

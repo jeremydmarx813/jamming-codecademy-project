@@ -5,7 +5,9 @@ import React from 'react'
 
 function LoginPage() {
     // const { loginWithRedirect, isAuthenticated } = useAuth0();
-    const spotifyAuthLink = 'https://accounts.spotify.com/authorize?client_id=f03925ce76e844a79a88dbbe1f677103&response_type=code&redirect_uri=http://localhost:3000&scope=playlist-modify-public&show_dialog=true';
+    const clientId = 'f03925ce76e844a79a88dbbe1f677103';
+    const redirectURI = 'http://localhost:3000/';
+    const spotifyAuthLink = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectURI}&scope=playlist-modify-public&show_dialog=true`;
     const styleObj = {
         display: 'flex',
         justifyContent: 'center',

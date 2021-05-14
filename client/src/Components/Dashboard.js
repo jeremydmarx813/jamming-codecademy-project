@@ -5,6 +5,7 @@ import useAuth from '../util/useAuth';
 
 const Dashboard = ({code}) => {
     const accessToken = useAuth(code);
+	// debugger;
     return (
         <ContextProvider>
 					<SearchBar />
