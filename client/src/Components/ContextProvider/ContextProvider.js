@@ -5,9 +5,10 @@ export const ProjectContext = createContext();
 
 const stateObj = {
 	        term                      : '',
-		    // searchResultsArrayInState : [],
-			// playlistName              : '',
-			// playlistTracks            : [],
+			accessToken               : '',
+		    searchResults             : [],
+			playlistName              : '',
+			playlistTracks            : [],
 			// headerClick               : headerClick,
 			// search                    : search,
 			// handleTermChange          : handleTermChange,
@@ -20,8 +21,29 @@ const contextReducer = (state, action) => {
    switch(action.type) {
 	case "UPDATE_TERM":
 		return {
+		  ...state,
 		  term: action.payload
 		};
+	case "UPDATE_PLAYLIST_NAME":
+			return {
+			  ...state,
+			  playlistName: action.payload
+			};
+	case "UPDATE_PLAYLIST_TRACKS":
+			return {
+				...state,
+				playlistTracks: action.payload
+				};
+	 case "ACCESS_TOKEN":
+		 return {
+			 ...state,
+			 accessToken: action.payload
+		 }
+	 case 'SEARCH_RESULTS':
+		 return {
+			 ...state,
+            searchResults: action.payload
+		 }
 	 default:
 		throw new Error();
    }
@@ -29,6 +51,7 @@ const contextReducer = (state, action) => {
 
 export const ContextProvider = ({children}) => {
    const [state, dispatch] = useReducer(contextReducer, stateObj);
+   
    return (
 	   <ProjectContext.Provider value={[state, dispatch]}>
             {children}

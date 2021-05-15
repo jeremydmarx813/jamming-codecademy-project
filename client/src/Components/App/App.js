@@ -18,15 +18,8 @@ import LoginPage from '../Login/LoginPage';
 
 const App = () => {
 	const code = new URLSearchParams(window.location.search).get("code");
-
 	// const { isAuthenticated } = useAuth0();
-	// const code = new URLSearchParams(window.location.search).get("code");
-	console.log(code);
-	// useEffect(() => {
-		// Spotify.test().then(res => console.log(res));
-		// axios.post('http://localhost:5000', { code }).then(res => console.log(res)).catch(err => console.log);
-	// }, []);
-	    // const code = new URLSearchParams(window.location.search).get("code")
+	// console.log(code);
 	return code ? <Dashboard code={code} /> : <LoginPage />;
 };
 

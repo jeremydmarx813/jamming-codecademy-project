@@ -3,11 +3,11 @@ import './TrackList.css';
 
 import Track from '../Track/Track';
 
-const TrackList = (props) => {
+const TrackList = ({tracks}) => {
 	return (
 		<div className="TrackList">
-			{props.tracks.map((track, i) => {
-				return <Track track={track} key={i} buttonFunc={props.buttonFunc} isRemoval={props.isRemoval} />;
+			{tracks.map(track => {
+				return <Track track={track} key={track.id}  />;
 			})}
 		</div>
 	);

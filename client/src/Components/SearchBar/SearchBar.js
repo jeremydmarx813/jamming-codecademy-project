@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import './SearchBar.css';
 import { ProjectContext } from '../ContextProvider/ContextProvider';
+import Spotify from '../../util/Spotify';
 
-const SearchBar = () => {
+const SearchBar = ({accessToken}) => {
 	const [state, dispatch] = useContext(ProjectContext);
+	
 	return (
 		
 			
@@ -19,7 +21,21 @@ const SearchBar = () => {
 						}}
 						name="term"
 					/>
-					<button className="SearchButton" onClick={() => {console.log('search test')}}>
+					<button className="SearchButton" onClick={() => {
+						console.log('search test');
+						Spotify.search(state.term, accessToken)
+						.then(res => {
+							// console.log(res)
+							dispatch({
+								type: 'SEARCH_RESULTS',
+								payload: res
+							})
+						})
+						.catch(err => {
+							console.log(err);
+						})
+					    
+					}}>
 						SEARCH
 					</button>
 				</div>

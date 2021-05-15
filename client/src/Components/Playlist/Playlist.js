@@ -1,27 +1,45 @@
-import React from 'react';
+import { useContext } from 'react';
 import './Playlist.css';
 
 import TrackList from '../TrackList/TrackList';
-import { ProjConsumer } from '../ContextProvider/ContextProvider';
+import { ProjectContext } from '../ContextProvider/ContextProvider';
+import Spotify from '../../util/Spotify';
 
 const Playlist = () => {
+	const [state, dispatch] = useContext(ProjectContext);
 	return (
-		<ProjConsumer>
-			{({ playlistName, playlistTracks, removeTrack, savePlaylist, handleTermChange }) => (
 				<div className="Playlist">
 					<input
-						onChange={handleTermChange}
-						value={playlistName}
+						onChange={(e) => {
+							dispatch({
+								type: 'UPDATE_PLAYLIST_NAME',
+								payload: e.target.value
+							})
+						}}
+						value={state.playlistName}
 						name="playlistName"
 						placeholder="Playlist Name"
 					/>
-					<TrackList tracks={playlistTracks} buttonFunc={removeTrack} isRemoval={true} />
-					<button className="Playlist-save" onClick={savePlaylist}>
+					<TrackList tracks={state.playlistTracks} />
+					<button className="Playlist-save" onClick={() => {
+						Spotify.savePlaylist(state.playlistName, state.playlistTracks)
+						.then(res => {
+							console.log(res);
+						})
+						.then(res => {
+							dispatch({
+								type:'UPDATE_PLAYLIST_TRACKS',
+								payload: []
+							})
+						})
+						.catch(err => {
+							console.log(err);
+						})
+					}}>
 						SAVE TO SPOTIFY
 					</button>
 				</div>
-			)}
-		</ProjConsumer>
+			
 	);
 };
 

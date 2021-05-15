@@ -12,11 +12,11 @@ const useAuth = (code) => {
           code,
         })
         .then(res => {
-          console.log(res);
+          console.log(res.data);
           setAccessToken(res.data.accessToken)
           setRefreshToken(res.data.refreshToken)
           setExpiresIn(res.data.expiresIn)
-          // window.history.pushState({}, null, "/")
+          window.history.pushState({}, null, "/")
         })
         .catch((err) => {
           console.log(err);

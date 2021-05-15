@@ -48,12 +48,12 @@ const Spotify = {
 			window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectURI}&scope=playlist-modify-public`;
 		}
 	},
-	search: async (term) => {
-		const accessToken = await Spotify.getAccessToken();
-		 console.log(accessToken);
+	search: async (term, token) => {
+		// const accessToken = await Spotify.getAccessToken();
+		//  console.log(accessToken);
 		 return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
 			headers : {
-				Authorization : `Bearer ${accessToken}`
+				Authorization : `Bearer ${token}`
 				// ,
 				// "X-Requested-With": "XMLHttpRequest"
 				
@@ -84,10 +84,10 @@ const Spotify = {
 			console.log('need valid playlist input');
 			return;
 		}
-		const accessToken = Spotify.getAccessToken();
-		const headers = {
-			Authorization : `Bearer ${accessToken}`
-		};
+		// const accessToken = Spotify.getAccessToken();
+		// const headers = {
+		// 	Authorization : `Bearer ${accessToken}`
+		// };
 		let userId;
 		return fetch('https://api.spotify.com/v1/me', { headers: headers })
 			.then((response) => {
