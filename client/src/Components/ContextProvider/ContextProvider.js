@@ -29,11 +29,16 @@ const contextReducer = (state, action) => {
 			  ...state,
 			  playlistName: action.payload
 			};
-	case "UPDATE_PLAYLIST_TRACKS":
+	case "ADD_PLAYLIST_TRACK":
 			return {
 				...state,
-				playlistTracks: action.payload
+				playlistTracks: [...state.playlistTracks, action.payload]
 				};
+	 case "REMOVE_PLAYLIST_TRACK":
+		  return {
+			  ...state,
+			  playlistTracks: [...state.playlistTracks].filter(e => e.id !== action.payload)
+		  }
 	 case "ACCESS_TOKEN":
 		 return {
 			 ...state,

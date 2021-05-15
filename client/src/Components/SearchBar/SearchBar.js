@@ -22,7 +22,6 @@ const SearchBar = ({accessToken}) => {
 						name="term"
 					/>
 					<button className="SearchButton" onClick={() => {
-						console.log('search test');
 						Spotify.search(state.term, accessToken)
 						.then(res => {
 							// console.log(res)

@@ -1,12 +1,37 @@
-import { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Playlist.css';
 
 import TrackList from '../TrackList/TrackList';
 import { ProjectContext } from '../ContextProvider/ContextProvider';
 import Spotify from '../../util/Spotify';
+import axios from 'axios';
 
-const Playlist = () => {
+const Playlist = ({ accessToken }) => {
 	const [state, dispatch] = useContext(ProjectContext);
+	useEffect(() => {
+		// axios.get('https://api.spotify.com/v1/me', {
+		// 	   headers: {
+		// 		'Authorization' : `Bearer ${accessToken}`
+		// 	  }
+		// })
+        // .then((response) => {
+		// 	console.log(`playlist useEffect response ${response}`);
+		// }).catch(err => {
+		// 	console.log(err);
+		// })
+		fetch('https://api.spotify.com/v1/me', {
+			headers: { 
+				'Authorization': `Bearer ${accessToken}`
+			}
+		}).then((response) => {
+			return response.json();
+		})
+		.then(jsonResponse => {
+			console.log(jsonResponse);
+		}).catch(err => {
+			console.log(err);
+		})
+	}, [])
 	return (
 				<div className="Playlist">
 					<input
@@ -20,21 +45,21 @@ const Playlist = () => {
 						name="playlistName"
 						placeholder="Playlist Name"
 					/>
-					<TrackList tracks={state.playlistTracks} />
+					<TrackList tracks={state.playlistTracks} isRemoval={true}/>
 					<button className="Playlist-save" onClick={() => {
-						Spotify.savePlaylist(state.playlistName, state.playlistTracks)
-						.then(res => {
-							console.log(res);
-						})
-						.then(res => {
-							dispatch({
-								type:'UPDATE_PLAYLIST_TRACKS',
-								payload: []
-							})
-						})
-						.catch(err => {
-							console.log(err);
-						})
+						Spotify.savePlaylist(state.playlistName, state.playlistTracks, accessToken);
+						// .then(res => {
+						// 	console.log(res);
+						// })
+						// .then(res => {
+						// 	dispatch({
+						// 		type:'UPDATE_PLAYLIST_TRACKS',
+						// 		payload: []
+						// 	})
+						// })
+						// .catch(err => {
+						// 	console.log(err);
+						// })
 					}}>
 						SAVE TO SPOTIFY
 					</button>

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ProjectContext } from '../ContextProvider/ContextProvider';
 import './Track.css';
 
-const Track = ({track}) => {
+const Track = ({track, isRemoval}) => {
+	const [state, dispatch] = useContext(ProjectContext);
 	return (
 		<div className="Track">
 			<div className="Track-information">
@@ -10,15 +12,25 @@ const Track = ({track}) => {
 					{track.artist} | {track.album}
 				</p>
 			</div>
-			{/* {props.isRemoval ? (
-				<button className="Track-action" onClick={props.buttonFunc.bind(this, props.track)}>
+			{isRemoval ? (
+				<button className="Track-action" onClick={() => {
+					dispatch({
+						type: 'REMOVE_PLAYLIST_TRACK',
+						payload: track.id
+					})
+				}}>
 					-
 				</button>
 			) : (
-				<button className="Track-action" onClick={props.buttonFunc.bind(this, props.track)}>
+				<button className="Track-action" onClick={() => {
+                   dispatch({
+					   type: 'ADD_PLAYLIST_TRACK',
+					   payload: track
+				   })
+				}}>
 					+
 				</button>
-			)} */}
+			)}
 		</div>
 	);
 };

@@ -10,7 +10,7 @@ const SearchResults = () => {
 	return state.searchResults ? ( 
 	          <div className="SearchResults">
 					<h2>Results</h2>
-					<TrackList tracks={state.searchResults} />
+					<TrackList tracks={state.searchResults} isRemoval={false}/>
 			</div>		
 			
 	) : null;

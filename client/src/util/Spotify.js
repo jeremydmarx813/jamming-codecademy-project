@@ -48,7 +48,7 @@ const Spotify = {
 			window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectURI}&scope=playlist-modify-public`;
 		}
 	},
-	search: async (term, token) => {
+	search: (term, token) => {
 		// const accessToken = await Spotify.getAccessToken();
 		//  console.log(accessToken);
 		 return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
@@ -79,17 +79,20 @@ const Spotify = {
 			})
 			.catch((e) => console.log(e));
 	},
-	savePlaylist(name, trackUris) {
-		if (!name || !trackUris.length) {
+	savePlaylist(name, tracks, token) {
+		// console.log('savePlaylist test')
+		if (!name || !tracks.length) {
 			console.log('need valid playlist input');
 			return;
 		}
 		// const accessToken = Spotify.getAccessToken();
-		// const headers = {
-		// 	Authorization : `Bearer ${accessToken}`
-		// };
+		const trackURIs = tracks.map(e => e.uri);
+		console.log(trackURIs);
+		const headers = {
+			Authorization : `Bearer ${token}`
+		};
 		let userId;
-		return fetch('https://api.spotify.com/v1/me', { headers: headers })
+		return fetch('https://api.spotify.com/v1/me', { headers })
 			.then((response) => {
 				return response.json();
 			})
@@ -109,7 +112,7 @@ const Spotify = {
 						return fetch(`/v1/users/${userId}/playlists/${playlistID}/tracks`, {
 							headers : headers,
 							method  : 'POST',
-							body    : JSON.stringify({ URIs: trackUris })
+							body    : JSON.stringify({ URIs: trackURIs })
 						});
 					})
 					.catch((error) => console.log(error));

@@ -3,6 +3,7 @@ import { ContextProvider, ProjectContext } from '../Components/ContextProvider/C
 import SearchBar from '../Components/SearchBar/SearchBar';
 import useAuth from '../util/useAuth';
 import SearchResults from '../Components/SearchResults/SearchResults';
+import Playlist from '../Components/Playlist/Playlist';
 
 const Dashboard = ({code}) => {
     const accessToken = useAuth(code);
@@ -11,7 +12,7 @@ const Dashboard = ({code}) => {
 					<SearchBar accessToken={accessToken}/>
 					<div className="App-playlist">
 						<SearchResults />
-						{/* <Playlist /> */}
+						<Playlist accessToken={accessToken}/>
 					</div> 	
 		</ContextProvider>
     )
