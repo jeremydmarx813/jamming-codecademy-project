@@ -79,7 +79,7 @@ const Spotify = {
 			})
 			.catch((e) => console.log(e));
 	},
-	savePlaylist(name, tracks, token, userId) {
+	savePlaylist: async (name, tracks, token, userId) => {
 		// console.log('savePlaylist test')
 		if (!name || !tracks.length) {
 			console.log('need valid playlist input');
@@ -87,30 +87,40 @@ const Spotify = {
 		}
 		// const accessToken = Spotify.getAccessToken();
 		const trackURIs = tracks.map(e => e.uri);
-		console.log(trackURIs);
+		// console.log(trackURIs);
 		const headers = {
-			Authorization : `Bearer ${token}`
+			'Authorization' : `Bearer ${token}`,
+			 'Content-Type'  :   'application/json'
 		};
-		
-				return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
-					headers : headers,
-					method  : 'POST',
-					body    : JSON.stringify({
-						name : name
-					})
-				})
-					.then((response) => response.json())
-					.then((jsonResponse) => {
-						console.log(jsonResponse);
-						const playlistID = jsonResponse.id;
-						return fetch(`/v1/users/${userId}/playlists/${playlistID}/tracks`, {
-							headers : headers,
-							method  : 'POST',
-							body    : JSON.stringify({ URIs: trackURIs })
-						});
-					})
-					.catch((error) => console.log(error));
-			
+
+				// return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+				// 	headers : headers,
+				// 	method  : 'POST',
+				// 	body    : JSON.stringify({
+				// 		name 
+				// 	})
+				// })
+				// 	.then((response) => response.json())
+				// 	.then((jsonResponse) => {
+				// 		console.log(jsonResponse);
+				// 		const playlistID = jsonResponse.id;
+				// 		return fetch(`/v1/users/${userId}/playlists/${playlistID}/tracks`, {
+				// 			headers : headers,
+				// 			method  : 'POST',
+				// 			body    : JSON.stringify({ URIs: trackURIs })
+				// 		});
+				// 	})
+				// 	.catch((error) => console.log(error));
+	     const playlistCreation = await axios({
+			method: 'post',
+			headers,
+			url: `https://api.spotify.com/v1/users/${userId}/playlists`,
+			dataType: 'json',
+			data : {
+				name
+			}
+		 })		
+		 return playlistCreation;
 	}
 };
 

@@ -54,14 +54,14 @@ const Playlist = ({ accessToken }) => {
 						.then(res => {
 							console.log(res);
 						})
+						.catch(err => {
+							console.log(err);
+						})
 						// .then(res => {
 						// 	dispatch({
 						// 		type:'UPDATE_PLAYLIST_TRACKS',
 						// 		payload: []
 						// 	})
-						// })
-						// .catch(err => {
-						// 	console.log(err);
 						// })
 					}}>
 						SAVE TO SPOTIFY
