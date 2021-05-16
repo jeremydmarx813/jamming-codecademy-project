@@ -9,6 +9,7 @@ const stateObj = {
 		    searchResults             : [],
 			playlistName              : '',
 			playlistTracks            : [],
+			userInfo                  : {}
 			// headerClick               : headerClick,
 			// search                    : search,
 			// handleTermChange          : handleTermChange,
@@ -44,6 +45,11 @@ const contextReducer = (state, action) => {
 			 ...state,
 			 accessToken: action.payload
 		 }
+	case "USER_INFO":
+		 return {
+			 ...state,
+			 userInfo: action.payload
+			}
 	 case 'SEARCH_RESULTS':
 		 return {
 			 ...state,

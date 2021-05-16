@@ -27,11 +27,14 @@ const Playlist = ({ accessToken }) => {
 			return response.json();
 		})
 		.then(jsonResponse => {
-			console.log(jsonResponse);
+			dispatch({
+				type: 'USER_INFO',
+				payload: jsonResponse
+			})
 		}).catch(err => {
 			console.log(err);
 		})
-	}, [])
+	}, [accessToken])
 	return (
 				<div className="Playlist">
 					<input
@@ -47,10 +50,10 @@ const Playlist = ({ accessToken }) => {
 					/>
 					<TrackList tracks={state.playlistTracks} isRemoval={true}/>
 					<button className="Playlist-save" onClick={() => {
-						Spotify.savePlaylist(state.playlistName, state.playlistTracks, accessToken);
-						// .then(res => {
-						// 	console.log(res);
-						// })
+						Spotify.savePlaylist(state.playlistName, state.playlistTracks, accessToken, state.userInfo.id)
+						.then(res => {
+							console.log(res);
+						})
 						// .then(res => {
 						// 	dispatch({
 						// 		type:'UPDATE_PLAYLIST_TRACKS',

@@ -79,7 +79,7 @@ const Spotify = {
 			})
 			.catch((e) => console.log(e));
 	},
-	savePlaylist(name, tracks, token) {
+	savePlaylist(name, tracks, token, userId) {
 		// console.log('savePlaylist test')
 		if (!name || !tracks.length) {
 			console.log('need valid playlist input');
@@ -91,13 +91,7 @@ const Spotify = {
 		const headers = {
 			Authorization : `Bearer ${token}`
 		};
-		let userId;
-		return fetch('https://api.spotify.com/v1/me', { headers })
-			.then((response) => {
-				return response.json();
-			})
-			.then((jsonResponse) => {
-				userId = jsonResponse.id;
+		
 				return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
 					headers : headers,
 					method  : 'POST',
@@ -116,8 +110,7 @@ const Spotify = {
 						});
 					})
 					.catch((error) => console.log(error));
-			})
-			.catch((error) => console.log(error));
+			
 	}
 };
 
