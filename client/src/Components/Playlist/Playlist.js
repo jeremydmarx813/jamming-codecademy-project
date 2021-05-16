@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import './Playlist.css';
 
 import TrackList from '../TrackList/TrackList';
@@ -6,35 +6,9 @@ import { ProjectContext } from '../ContextProvider/ContextProvider';
 import Spotify from '../../util/Spotify';
 import axios from 'axios';
 
-const Playlist = ({ accessToken }) => {
+const Playlist = () => {
 	const [state, dispatch] = useContext(ProjectContext);
-	useEffect(() => {
-		// axios.get('https://api.spotify.com/v1/me', {
-		// 	   headers: {
-		// 		'Authorization' : `Bearer ${accessToken}`
-		// 	  }
-		// })
-        // .then((response) => {
-		// 	console.log(`playlist useEffect response ${response}`);
-		// }).catch(err => {
-		// 	console.log(err);
-		// })
-		fetch('https://api.spotify.com/v1/me', {
-			headers: { 
-				'Authorization': `Bearer ${accessToken}`
-			}
-		}).then((response) => {
-			return response.json();
-		})
-		.then(jsonResponse => {
-			dispatch({
-				type: 'USER_INFO',
-				payload: jsonResponse
-			})
-		}).catch(err => {
-			console.log(err);
-		})
-	}, [accessToken])
+	
 	return (
 				<div className="Playlist">
 					<input
@@ -50,19 +24,20 @@ const Playlist = ({ accessToken }) => {
 					/>
 					<TrackList tracks={state.playlistTracks} isRemoval={true}/>
 					<button className="Playlist-save" onClick={() => {
-						Spotify.savePlaylist(state.playlistName, state.playlistTracks, accessToken, state.userInfo.id)
+						Spotify.savePlaylist(state.playlistName, state.playlistTracks, state.accessToken, state.userInfo.id)
 						.then(res => {
 							console.log(res);
+							if(res.status === 201){
+                                dispatch({
+									type: 'RESET_PLAYLIST'
+								})
+							} else {
+								throw new Error(res.status)
+							}
 						})
 						.catch(err => {
 							console.log(err);
 						})
-						// .then(res => {
-						// 	dispatch({
-						// 		type:'UPDATE_PLAYLIST_TRACKS',
-						// 		payload: []
-						// 	})
-						// })
 					}}>
 						SAVE TO SPOTIFY
 					</button>

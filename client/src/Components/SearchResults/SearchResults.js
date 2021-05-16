@@ -1,11 +1,11 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import './SearchResults.css';
 
 import TrackList from '../TrackList/TrackList';
-import { ProjConsumer, ProjectContext } from '../ContextProvider/ContextProvider';
+import { ProjectContext } from '../ContextProvider/ContextProvider';
 
 const SearchResults = () => {
-	const [state, dispatch] = useContext(ProjectContext);
+	const [state] = useContext(ProjectContext);
 
 	return state.searchResults ? ( 
 	          <div className="SearchResults">
