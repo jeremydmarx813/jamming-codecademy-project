@@ -23,7 +23,7 @@ const Playlist = () => {
 						placeholder="Playlist Name"
 					/>
 					<TrackList tracks={state.playlistTracks} isRemoval={true}/>
-					<button className="Playlist-save" onClick={() => {
+					<button className="pill-button playlist-pill" onClick={() => {
 						Spotify.savePlaylist(state.playlistName, state.playlistTracks, state.accessToken, state.userInfo.id)
 						.then(res => {
 							console.log(res);
