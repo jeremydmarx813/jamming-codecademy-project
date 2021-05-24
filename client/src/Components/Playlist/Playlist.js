@@ -9,7 +9,7 @@ import axios from 'axios';
 const Playlist = () => {
 	const [state, dispatch] = useContext(ProjectContext);
 	
-	return (
+	return state.playlistTracks.length > 0 ? (
 				<div className="Playlist">
 					<input
 						onChange={(e) => {
@@ -43,7 +43,7 @@ const Playlist = () => {
 					</button>
 				</div>
 			
-	);
+	) : null;
 };
 
 export default Playlist;
