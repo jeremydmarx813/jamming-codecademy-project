@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors');
 const dotenv = require('dotenv')
 const SpotifyWebApi = require("spotify-web-api-node");
+const path = require('path');
 
 const app = express();
 app.use(cors());
@@ -56,6 +57,13 @@ app.post('/login', (req, res) => {
       res.sendStatus(400)
     })
 })
+
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 app.listen(port, () => {
   console.log(`app listening at port ${port}`);
