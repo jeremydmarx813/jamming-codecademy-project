@@ -8,7 +8,7 @@ const useAuth = (code) => {
   
     useEffect(() => {
       axios
-        .post("http://localhost:5000/login", {
+        .post("/login", {
           code,
         })
         .then(res => {
@@ -26,7 +26,7 @@ const useAuth = (code) => {
       if (!refreshToken || !expiresIn) return
       const interval = setInterval(() => {
         axios
-          .post("http://localhost:5000/refresh", {
+          .post("/refresh", {
             refreshToken,
           })
           .then(res => {
