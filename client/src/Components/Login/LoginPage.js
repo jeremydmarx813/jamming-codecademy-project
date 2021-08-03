@@ -6,7 +6,7 @@ import React from 'react'
 function LoginPage() {
     
     const clientId = 'f03925ce76e844a79a88dbbe1f677103';
-    const redirectURI = 'http://localhost:3000/';
+    const redirectURI = 'https://spotify-playlist-make-cc.herokuapp.com/';
     const spotifyAuthLink = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectURI}&scope=playlist-modify-public&show_dialog=true`;
   
     return  (

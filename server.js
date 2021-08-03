@@ -10,12 +10,6 @@ dotenv.config();
 const port = process.env.PORT || 5000;
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, 'client/build')));
-
-
-// app.get('/*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-// });
 
 app.post("/refresh", (req, res) => {
   const refreshToken = req.body.refreshToken
@@ -64,7 +58,11 @@ app.post('/login', (req, res) => {
     })
 })
 
-
+if(process.env.NODE_ENV === 'production'){
+  console.log('production code block')
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
+}
 
 app.listen(port, () => {
   console.log(`app listening at port ${port}`);
