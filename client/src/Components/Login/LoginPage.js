@@ -1,14 +1,12 @@
 import React from 'react'
-// import { useAuth0 } from '@auth0/auth0-react';
-// import { Redirect } from 'react-router-dom';
 
 
 function LoginPage() {
     
-    const clientId = 'f03925ce76e844a79a88dbbe1f677103';
-    const redirectURI = 'https://spotify-playlist-make-cc.herokuapp.com/';
+    const clientId = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_CLIENT_ID : process.env.CLIENT_ID;
+    const redirectURI = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/' : process.env.REDIRECT_URI;
     const spotifyAuthLink = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectURI}&scope=playlist-modify-public&show_dialog=true`;
-  
+
     return  (
         <div className="login-div">
             <button className="pill-button login-pill">

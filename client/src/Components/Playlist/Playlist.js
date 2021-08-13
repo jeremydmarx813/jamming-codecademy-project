@@ -4,7 +4,7 @@ import './Playlist.css';
 import TrackList from '../TrackList/TrackList';
 import { ProjectContext } from '../ContextProvider/ContextProvider';
 import Spotify from '../../util/Spotify';
-import axios from 'axios';
+// import axios from 'axios';
 
 const Playlist = () => {
 	const [state, dispatch] = useContext(ProjectContext);

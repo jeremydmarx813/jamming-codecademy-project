@@ -2,7 +2,7 @@ import React, { useContext, useEffect} from 'react';
 import './SearchBar.css';
 import { ProjectContext } from '../ContextProvider/ContextProvider';
 import Spotify from '../../util/Spotify';
-import axios from 'axios';
+// import axios from 'axios';
 
 const SearchBar = ({accessToken}) => {
 	const [state, dispatch] = useContext(ProjectContext);
@@ -14,16 +14,6 @@ const SearchBar = ({accessToken}) => {
 	}, [accessToken, dispatch]);
 
 	useEffect(() => {
-		// axios.get('https://api.spotify.com/v1/me', {
-		// 	headers: {
-		// 			'Authorization' : `Bearer ${accessToken}`
-		// 		  }
-		// })
-        // .then((response) => {
-		// 	console.log(`playlist useEffect response ${response}`);
-		// }).catch(err => {
-		// 	console.log(err);
-		// })
 		fetch('https://api.spotify.com/v1/me', {
 			headers: { 
 				'Authorization': `Bearer ${state.accessToken}`
