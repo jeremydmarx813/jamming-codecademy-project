@@ -6,11 +6,12 @@ const path = require('path');
 const mode = process.env.MODE;
 const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET
-const redirectUri = mode === 'development' ? 'http://localhost:3000' : process.env.REDIRECT_URI;
+const redirectUri = process.env.REDIRECT_URI;
 const app = express();
 app.use(cors());
 const port = process.env.PORT || 5000;
 app.use(express.json());
+
 
 
 app.post("/refresh", (req, res) => {
@@ -60,13 +61,14 @@ app.post('/login', (req, res) => {
     })
 })
 
-if(mode === 'production'){
-  console.log('production code block')
-  app.use(express.static('client/build'));
-  app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
-} else {
-  console.log('dev code block test')
-}
+// console.log('production code block')
+app.use(express.static('client/build'));
+app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
+// if(mode === 'production'){
+// } 
+// else {
+//   console.log('dev code block test')
+// }
 
 app.listen(port, () => {
   console.log(`app listening at port ${port} in ${mode} mode.`);
