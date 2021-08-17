@@ -26,7 +26,7 @@ const Playlist = () => {
 					<button className="pill-button playlist-pill" onClick={() => {
 						Spotify.savePlaylist(state.playlistName, state.playlistTracks, state.accessToken, state.userInfo.id)
 						.then(res => {
-							console.log(res);
+							// console.log(res);
 							if(res.status === 201){
                                 dispatch({
 									type: 'RESET_PLAYLIST'
