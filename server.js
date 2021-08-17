@@ -3,7 +3,7 @@ const cors = require("cors");
 const dotenv = require("dotenv").config();
 const SpotifyWebApi = require("spotify-web-api-node");
 const path = require("path");
-const mode = process.env.MODE;
+const mode = process.env.NODE_ENV;
 const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
 const redirectUri = process.env.REDIRECT_URI;
@@ -61,11 +61,11 @@ app.post("/login", (req, res) => {
 
 if (mode === "production") {
   console.log("production code block");
-  app.use(express.static('client/build'));
-  // app.use(express.static(path.resolve(__dirname, "./client/build")));
-  // app.get("*", (req, res) =>
-  //   res.sendFile(path.resolve(__dirname, "./client/build", "index.html"))
-  // );
+  // app.use(express.static('client/build'));
+  app.use(express.static(path.resolve(__dirname, "./client/build")));
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "./client/build", "index.html"))
+  );
 } else {
   console.log("dev code block test");
   app.use(morgan("dev"));
